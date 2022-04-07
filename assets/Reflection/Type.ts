@@ -1,4 +1,3 @@
-import { Attribute } from "./Attribute";
 import { FieldInfo } from "./FieldInfo";
 import { MethordInfo } from "./MethordInfo";
 import { PropertyInfo } from "./PropertyInfo";

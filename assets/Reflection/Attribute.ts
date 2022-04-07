@@ -1,10 +1,6 @@
 import { DictionaryArray } from "./DictionaryArray";
 import { Type } from "./Type";
 
-export class Attribute
-{    
-    name: string;
-}
 export class AttributeInfo
 {   
     attributeName: string;
