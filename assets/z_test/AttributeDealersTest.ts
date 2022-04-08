@@ -1,6 +1,7 @@
 import { AttributeMgr } from "../Reflection/Attribute";
 import { AttributeDealers } from "../Reflection/AttributeDealers";
 import { Assert } from "./Assert";
+import { Testfield } from "./AttributeTest";
 import { UnitTest } from "./TestHelper";
 export class AttributeDealersTest
 {
@@ -9,7 +10,7 @@ export class AttributeDealersTest
     {
         AttributeDealers.Add(() =>
         {
-            let infos = AttributeMgr.getAttributeInfo("Testfield");
+            let infos = AttributeMgr.getAttributeInfo(Testfield);
             Assert.IsTrue(infos != undefined);
             infos.forEach(n =>
             {

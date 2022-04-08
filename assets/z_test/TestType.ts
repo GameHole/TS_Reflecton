@@ -85,6 +85,14 @@ export class TestType
     {
         let type = TypeOf(TestClass);
         Assert.IsTrue(type != null);
+        Assert.IsTrue(type.Name=="TestClass");
+    }
+    @UnitTest
+    test_TypeOf1()
+    {
+        let type = TypeOf(new TestClass());
+        Assert.IsTrue(type != null);
+        Assert.IsTrue(type.Name=="TestClass");
     }
     @UnitTest
     test_Name()

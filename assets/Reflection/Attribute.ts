@@ -12,25 +12,25 @@ export class AttributeMgr
 {
     private static _infos: DictionaryArray<string,AttributeInfo> = new DictionaryArray<string, AttributeInfo>();
     private static _keys: Array<string> = [];
-    static AddAttributeInfo(attributeName:string,proto: any, key: string, ...extra: any):void
+    static AddAttributeInfo(attributeType:Function,proto: any, key: string, ...extra: any):void
     {
         let info = new AttributeInfo();
-        info.attributeName = attributeName;
+        info.attributeName = attributeType.name;
         info.type = new Type(proto);
         info.propertyName = key;
         info.extra = extra;
-        if (this._infos.add(attributeName, info))
-            this._keys.push(attributeName);
+        if (this._infos.add(attributeType.name, info))
+            this._keys.push(attributeType.name);
     }
-    static getAttributeInfo(attributeName:string): Array<AttributeInfo>
+    static getAttributeInfo(attributeType:Function): Array<AttributeInfo>
     {
-        return this._infos.getValues(attributeName);
+        return this._infos.getValues(attributeType.name);
     }
-    static Foreach(f:( attributeName:string,array:Array<AttributeInfo>)=>void):void
+    static Foreach(f:(attributeName:string,array:Array<AttributeInfo>)=>void):void
     {
         this._keys.forEach(k =>
         {
-            f(k, this.getAttributeInfo(k));
+            f(k, this._infos.getValues(k));
         });
     }
 }

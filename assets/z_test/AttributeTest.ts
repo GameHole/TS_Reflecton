@@ -5,14 +5,14 @@ function TestAttribute(type:any)
 {
     return function (p, k)
     {
-        AttributeMgr.AddAttributeInfo("TestAttribute", p, k,type);
+        AttributeMgr.AddAttributeInfo(TestAttribute, p, k,type);
     }
 }
-function Testfield(fieldType:any)
+export function Testfield(fieldType:any)
 {
     return function (p, k)
     {
-        AttributeMgr.AddAttributeInfo("Testfield", p, k,fieldType);
+        AttributeMgr.AddAttributeInfo(Testfield, p, k,fieldType);
     }
 }
 class TTT
@@ -31,7 +31,7 @@ export class AttributeTest
     testd()
     {
         //AttributeMgr.AddAttributeInfo("test", AttributeTest.prototype, "TestAdd");
-        let res = AttributeMgr.getAttributeInfo("TestAttribute");
+        let res = AttributeMgr.getAttributeInfo(TestAttribute);
         Assert.IsEqual(1, res.length);
         let info = res[0];
         Assert.IsEqual("TestAttribute", info.attributeName);
@@ -46,7 +46,7 @@ export class AttributeTest
     testu()
     {
         
-        let infos = AttributeMgr.getAttributeInfo("Testfield");
+        let infos = AttributeMgr.getAttributeInfo(Testfield);
         infos.forEach(info =>
         {
             let p = info.type.GetField(info.propertyName);

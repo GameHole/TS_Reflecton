@@ -3,6 +3,9 @@ import { MethordInfo } from "./MethordInfo";
 import { PropertyInfo } from "./PropertyInfo";
 export function TypeOf(type: any): Type
 {
+    let pt = type.prototype;
+    if (pt === undefined)
+        return new Type(Object.getPrototypeOf(type));
     return new Type(type.prototype);
 }
 export class Type
