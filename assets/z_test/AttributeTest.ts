@@ -12,7 +12,7 @@ function Testfield(fieldType:any)
 {
     return function (p, k)
     {
-        AttributeMgr.AddAttributeInfo("TestAttribute", p, k,fieldType);
+        AttributeMgr.AddAttributeInfo("Testfield", p, k,fieldType);
     }
 }
 class TTT
