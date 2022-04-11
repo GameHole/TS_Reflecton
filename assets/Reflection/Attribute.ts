@@ -3,10 +3,17 @@ import { Type } from "./Type";
 
 export class AttributeInfo
 {   
-    attributeName: string;
-    type: Type;
-    propertyName: string;
-    extra: any[];
+    readonly attributeName: string;
+    readonly type: Type;
+    readonly propertyName: string;
+    readonly extra: any[];
+    constructor(attributeName: Function,proto: any,propertyName: string,extra: any[])
+    {
+        this.attributeName = attributeName.name;
+        this.type = new Type(proto);
+        this.propertyName = propertyName;
+        this.extra = extra;
+    }
 }
 export class AttributeMgr
 {
@@ -14,11 +21,7 @@ export class AttributeMgr
     private static _keys: Array<string> = [];
     static AddAttributeInfo(attributeType:Function,proto: any, key: string, ...extra: any):void
     {
-        let info = new AttributeInfo();
-        info.attributeName = attributeType.name;
-        info.type = new Type(proto);
-        info.propertyName = key;
-        info.extra = extra;
+        let info = new AttributeInfo(attributeType, proto, key, extra);
         if (this._infos.add(attributeType.name, info))
             this._keys.push(attributeType.name);
     }
