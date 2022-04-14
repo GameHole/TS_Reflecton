@@ -78,6 +78,36 @@ class TestClass4
         this._m = v;
     }
 }
+abstract class TestAss0
+{
+    abstract Test();
+}
+abstract class TestAssGS
+{
+    abstract get test(): number;
+}
+class TestAss1 implements TestAss0
+{
+    Test()
+    {
+        throw new Error("Method not implemented.");
+    }
+}
+class TestAss2 extends TestAss0
+{
+    Test()
+    {
+        throw new Error("Method not implemented.");
+    }
+    Test1()
+    {
+        
+    }
+}
+class TestAss3 extends TestAss2
+{
+    
+}
 export class TestType
 {    
     @UnitTest
@@ -136,10 +166,12 @@ export class TestType
         let type = TypeOf(TestClass);
         let meh = type.GetMethords();
         Assert.IsEqual(4, meh.length);
-        let exp = ["TestClass.test", "TestClass.testA", "TestClass.testB", "TestClass.testC"];
+        let expf = ["TestClass.test", "TestClass.testA", "TestClass.testB", "TestClass.testC"];
+        let exp = ["test", "testA", "testB", "testC"];
         for (let i = 0; i < meh.length; i++)
         {
             Assert.IsEqual(exp[i], meh[i].Name);
+            Assert.IsEqual(expf[i], meh[i].FullName);
         }
     }
     @UnitTest
@@ -155,7 +187,8 @@ export class TestType
         let type = TypeOf(TestClass2);
         let meh = type.GetPropertity("testField");
         Assert.IsTrue(meh != null);
-        Assert.IsEqual("TestClass2.testField",meh.Name);
+        Assert.IsEqual("TestClass2.testField", meh.FullName);
+        Assert.IsEqual("testField",meh.Name);
     }
     @UnitTest
     test_getPropertity1()
@@ -173,7 +206,7 @@ export class TestType
         let exp = ["TestClass3.testField0","TestClass3.testField1", "TestClass3.testField2", "TestClass3.testField3","TestClass3.testField4"];
         for (let i = 0; i < meh.length; i++)
         {
-            Assert.IsEqual(exp[i], meh[i].Name);
+            Assert.IsEqual(exp[i], meh[i].FullName);
         }
     }
     @UnitTest
@@ -185,7 +218,7 @@ export class TestType
         let exp = ["TestClass2.testField"];
         for (let i = 0; i < meh.length; i++)
         {
-            Assert.IsEqual(exp[i], meh[i].Name);
+            Assert.IsEqual(exp[i], meh[i].FullName);
         }
     }
     @UnitTest
@@ -194,7 +227,7 @@ export class TestType
         let type = TypeOf(TestClass);
         let meh = type.GetField("testField");
         Assert.IsTrue(meh != null);
-        Assert.IsEqual("TestClass.testField",meh.Name);
+        Assert.IsEqual("TestClass.testField",meh.FullName);
     }
     @UnitTest
     test_getField1()
@@ -202,7 +235,7 @@ export class TestType
         let type = TypeOf(TestClass4);
         let meh = type.GetField("_m");
         Assert.IsTrue(meh != null);
-        Assert.IsEqual("TestClass4._m", meh.Name);
+        Assert.IsEqual("TestClass4._m", meh.FullName);
         let inst = type.CreateInstance();
         Assert.IsEqual(undefined, meh.GetValue(inst));
         meh.SetValue(inst, 100);
@@ -215,4 +248,5 @@ export class TestType
         let meh = type.GetFields();
         Assert.IsEqual(1,meh.length);
     }
+    
 }

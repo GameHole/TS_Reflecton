@@ -11,6 +11,10 @@ export class MemberInfo
     }
     get Name()
     {
+        return this.name;
+    }
+    get FullName()
+    {
         return this.type.Name + "." + this.name;
     }
 }
